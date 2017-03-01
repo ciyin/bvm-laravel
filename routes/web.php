@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::resource('role','RoleController');
+
+Route::resource('examtype','ExamTypeController');
+
+Route::resource('booktype','BookTypeController');
+
+Route::resource('user','UserController');
