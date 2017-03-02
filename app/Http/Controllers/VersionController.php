@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreExam;
-use App\repositories\ExamTypeRepository;
+use App\Book;
+use App\Http\Requests\StoreVersion;
+use App\repositories\VersionRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ExamTypeController extends Controller
+
+class VersionController extends Controller
 {
-    protected $exam;
-    public function __construct(ExamTypeRepository $exam)
+    protected $version;
+    public function __construct(VersionRepository $version)
     {
-        $this->exam=$exam;
+        $this->version=$version;
     }
 
     /**
@@ -22,8 +23,7 @@ class ExamTypeController extends Controller
      */
     public function index()
     {
-        $list=$this->exam->examList();
-        return view('examtype/examPage',['exams'=>$list]);
+        //
     }
 
     /**
@@ -42,12 +42,12 @@ class ExamTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExam $request)
+    public function store(StoreVersion $request)
     {
-        $user=Auth::user();
-        $exam=$this->exam->storeExam($request);
-        $user->examTypes()->save($exam);
-        return redirect('/examtype');
+        $book=Book::find($request->book_id);
+        $version=$this->version->storeVersion($request);
+        $book->versions()->save($version);
+        return redirect('/book');
     }
 
     /**
@@ -79,10 +79,9 @@ class ExamTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreExam $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->exam->updateExam($request,$id);
-        return redirect('/examtype');
+        //
     }
 
     /**

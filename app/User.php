@@ -38,4 +38,12 @@ class User extends Authenticatable
     public function bookTypes(){
         return $this->hasMany('App\BookType');
     }
+
+    public function books(){
+        return $this->hasMany('App\Book');
+    }
+
+    public function versions(){
+        return $this->hasManyThrough('App\Version','App\Book');
+    }
 }

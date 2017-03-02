@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUser;
+use App\repositories\RoleRepository;
+use App\repositories\UserRepository;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $user;
+    public function __construct(UserRepository $user)
+    {
+        $this->user=$user;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RoleRepository $role)
     {
-        //
+        $role=$role->roleList();
+        $list=$this->user->userList();
+        return view('user/userPage',['users'=>$list,'roles'=>$role]);
     }
 
     /**
@@ -32,9 +44,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        //
+        $this->user->storeUser($request);
+        return redirect('/user');
     }
 
     /**
@@ -68,7 +81,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->user->updateUser($request,$id);
+        return redirect('/user');
     }
 
     /**

@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label for="addPassword">密码：</label>
-                        <input type="password" class="form-control" id="addPassword" name="Password">
+                        <input type="password" class="form-control" id="addPassword" name="password">
                     </div>
                     <div>
                         <label>角色：</label>

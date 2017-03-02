@@ -2,18 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreExam;
+use App\Book;
+use App\Http\Requests\EditBook;
+use App\Http\Requests\StoreBook;
+use App\repositories\BookRepository;
+use App\repositories\BookTypeRepository;
 use App\repositories\ExamTypeRepository;
+use App\repositories\VersionRepository;
+use App\Version;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExamTypeController extends Controller
+class BookController extends Controller
 {
+    protected $book;
     protected $exam;
-    public function __construct(ExamTypeRepository $exam)
+    protected $type;
+    protected $version;
+    public function __construct(BookRepository $book,ExamTypeRepository $exam,BookTypeRepository $type,VersionRepository $version)
     {
+        $this->book=$book;
         $this->exam=$exam;
+        $this->type=$type;
+        $this->version=$version;
     }
+
 
     /**
      * Display a listing of the resource.
@@ -22,8 +35,10 @@ class ExamTypeController extends Controller
      */
     public function index()
     {
-        $list=$this->exam->examList();
-        return view('examtype/examPage',['exams'=>$list]);
+        $list=$this->book->bookList();
+        $exam=$this->exam->examList();
+        $type=$this->type->typeList();
+        return view('book/bookPage',['books'=>$list,'exams'=>$exam,'types'=>$type]);
     }
 
     /**
@@ -42,12 +57,12 @@ class ExamTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExam $request)
+    public function store(StoreBook $request)
     {
-        $user=Auth::user();
-        $exam=$this->exam->storeExam($request);
-        $user->examTypes()->save($exam);
-        return redirect('/examtype');
+        $book=$this->book->storeBook($request);
+        $version=$this->version->storeVersion($request);
+        $book->versions()->save($version);
+        return redirect('/book');
     }
 
     /**
@@ -58,7 +73,9 @@ class ExamTypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $version=$book->versions;
+        return view('book/bookDetails',['book'=>$book,'versions'=>$version]);
     }
 
     /**
@@ -79,10 +96,10 @@ class ExamTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreExam $request, $id)
+    public function update(EditBook $request, $id)
     {
-        $this->exam->updateExam($request,$id);
-        return redirect('/examtype');
+        $this->book->updateBook($request,$id);
+        return redirect('/book');
     }
 
     /**

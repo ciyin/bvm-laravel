@@ -19,6 +19,9 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <style>
+        .td {border: solid 1px gainsboro}
+    </style>
 </head>
 <body>
     <div id="app">

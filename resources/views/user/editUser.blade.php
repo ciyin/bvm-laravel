@@ -1,5 +1,5 @@
-{{--新增用户--}}
-<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+{{--编辑用户--}}
+<div class="modal fade" id="editUser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,25 +10,27 @@
                 {{csrf_field()}}
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="addUser">姓名：</label>
-                        <input type="text" class="form-control" id="addUser" name="name">
+                        <label for="User">姓名：</label>
+                        <input type="text" class="form-control" id="User" name="name">
                         {{method_field('PUT')}}
                     </div>
+                    <fieldset disabled>
+                        <div class="form-group">
+                            <label for="Email">邮箱：</label>
+                            <input type="text" class="form-control" id="Email" name="email" value="{{$user->email}}">
+                            {{method_field('PUT')}}
+                        </div>
+                    </fieldset>
                     <div class="form-group">
-                        <label for="addEmail">邮箱：</label>
-                        <input type="text" class="form-control" id="addEmail" name="email" value="{{$user->email}}">{{$user->email}}
-                        {{method_field('PUT')}}
-                    </div>
-                    <div class="form-group">
-                        <label for="addPassword">密码：</label>
-                        <input type="password" class="form-control" id="addPassword" name="Password">
+                        <label for="Password">密码：</label>
+                        <input type="password" class="form-control" id="Password" name="password">
                         {{method_field('PUT')}}
                     </div>
                     <div>
                         <label>角色：</label>
                         @foreach($roles as $role)
                             <label class="radio-inline">
-                                <input type="radio" name="role" value="{{$role->id}}"> {{$role->role}}
+                                <input type="radio" name="role" value="{{$role->id}}">{{$role->role}}
                                 {{method_field('PUT')}}
                             </label>
                         @endforeach

@@ -20,8 +20,7 @@ class BookTypeRepository{
     public function storeType($request){
         $type=new BookType();
         $type->book_type=$request->book_type;
-        $type->user_id=Auth::id();
-        $type->save();
+        return $type;
     }
 
     public function updateType($request,$id){

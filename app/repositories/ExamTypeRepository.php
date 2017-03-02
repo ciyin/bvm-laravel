@@ -20,8 +20,7 @@ class ExamTypeRepository{
     public function storeExam($request){
         $exam=new ExamType();
         $exam->exam_type=$request->exam_type;
-        $exam->user_id=Auth::id();
-        $exam->save();
+        return $exam;
     }
 
     public function updateExam($request,$id){

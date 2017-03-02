@@ -9,10 +9,10 @@
             <div class="col-lg-10 col-md-10 col-xs-10">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-6">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addUser">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addBook">
                             新增
                         </button>
-                        @include('user/addUser')
+                        @include('book/addBook')
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-6">
                         <div style="float: right">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="row" style="margin-top: 10px">
                     <div class="col-lg-12 col-md-12 col-xs-12">
-                        @include('user/userList')
+                        @include('book/bookList')
                     </div>
                 </div>
             </div>

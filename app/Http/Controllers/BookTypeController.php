@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreType;
 use App\repositories\BookTypeRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookTypeController extends Controller
 {
@@ -43,7 +44,9 @@ class BookTypeController extends Controller
      */
     public function store(StoreType $request)
     {
-        $this->type->storeType($request);
+        $user=Auth::user();
+        $type=$this->type->storeType($request);
+        $user->bookTypes()->save($type);
         return redirect('/booktype');
     }
 

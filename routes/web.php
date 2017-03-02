@@ -26,3 +26,7 @@ Route::resource('examtype','ExamTypeController');
 Route::resource('booktype','BookTypeController');
 
 Route::resource('user','UserController');
+
+Route::resource('book','BookController');
+
+Route::resource('version','VersionController');
