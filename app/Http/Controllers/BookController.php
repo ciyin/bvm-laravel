@@ -35,6 +35,15 @@ class BookController extends Controller
      */
     public function index()
     {
+        $book = Book::with('examType')->get()->map(function($item){
+            return [
+                'id' => $item['id'],
+                'book' => $item['book'],
+                'examId' => $item->examType->id
+            ];
+        });
+        dd($book->toArray());
+        exit;
         $list=$this->book->bookList();
         $exam=$this->exam->examList();
         $type=$this->type->typeList();

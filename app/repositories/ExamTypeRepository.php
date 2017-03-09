@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class ExamTypeRepository{
 
     public function examList(){
-        $list=ExamType::all();
+        $list=ExamType::with('user')->get();
         return $list;
     }
 

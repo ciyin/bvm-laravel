@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function versions(){
         return $this->hasManyThrough('App\Version','App\Book');
     }
+
+    public function user(){
+        return $this->belongsTo($this);
+    }
 }

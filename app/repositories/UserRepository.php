@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class UserRepository{
 
     public function userList(){
-        $list=User::all();
+        $list=User::with('role','user')->get();
         return $list;
     }
 

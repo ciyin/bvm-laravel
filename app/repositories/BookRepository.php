@@ -8,7 +8,10 @@
 namespace App\repositories;
 
 use App\Book;
+use App\ExamType;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Helper\Table;
 
 class BookRepository{
 

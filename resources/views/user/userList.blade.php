@@ -15,10 +15,10 @@
             <td>{{$user->id}}</td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td>{{$user->role_id}}</td>
+            <td>{{$user->role->role}}</td>
             <td>{{$user->city}}</td>
             <td>{{$user->status}}</td>
-            <td>{{$user->user_id}}</td>
+            <td>{{$user->user->name}}</td>
             <td>{{$user->created_at}}</td>
             <td>
                 <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editUser{{$user->id}}">

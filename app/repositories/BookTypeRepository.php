@@ -8,12 +8,13 @@
 namespace App\repositories;
 
 use App\BookType;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class BookTypeRepository{
 
     public function typeList(){
-        $list=BookType::all();
+        $list=BookType::with('user')->get();
         return $list;
     }
 

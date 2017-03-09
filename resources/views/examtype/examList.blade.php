@@ -11,7 +11,7 @@
         <tr>
             <td>{{$exam->id}}</td>
             <td>{{$exam->exam_type}}</td>
-            <td>{{$exam->user_id}}</td>
+            <td>{{$exam->user->name}}</td>
             <td>{{$exam->created_at}}</td>
             <td>{{$exam->updated_at}}</td>
             <td>

@@ -11,7 +11,7 @@
         <tr>
             <td>{{$type->id}}</td>
             <td>{{$type->book_type}}</td>
-            <td>{{$type->user_id}}</td>
+            <td>{{$type->user->name}}</td>
             <td>{{$type->created_at}}</td>
             <td>{{$type->updated_at}}</td>
             <td>
