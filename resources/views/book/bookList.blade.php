@@ -14,11 +14,15 @@
         <tr>
             <td>{{$book->id}}</td>
             <td>{{$book->book}}</td>
-            <td>{{$book->exam_type_id}}</td>
-            <td>{{$book->book_type_id}}</td>
-            <td>{{$book->status}}</td>
+            <td>{{$book->examType->exam_type}}</td>
+            <td>{{$book->bookType->book_type}}</td>
+            @if($book->status==1)
+                <td>使用中</td>
+            @else
+                <td>停用</td>
+            @endif
             <td>{{$book->version}}</td>
-            <td>{{$book->user_id}}</td>
+            <td>{{$book->user->name}}</td>
             <td>{{$book->created_at}}</td>
             <td>
                 <a href="{{route('book.show',$book->id)}}" target="_blank">
@@ -32,6 +36,9 @@
                     改版
                 </button>
                 @include('version.addVersion')
+                <a href="{{route('attachment.show',$book->id)}}" target="_blank">
+                    <button type="button" class="btn btn-default btn-xs">附件</button>
+                </a>
             </td>
         </tr>
     @endforeach

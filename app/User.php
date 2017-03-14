@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function user(){
         return $this->belongsTo($this);
     }
+
+    public function attachments(){
+        return $this->hasMany('App\Attachment');
+    }
 }

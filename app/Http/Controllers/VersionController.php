@@ -37,13 +37,11 @@ class VersionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 新增版本记录。
      */
     public function store(StoreVersion $request)
     {
+//      改版表单中设置一个隐藏的input，用来传递教材的id。
         $book=Book::find($request->book_id);
         $version=$this->version->storeVersion($request);
         $book->versions()->save($version);

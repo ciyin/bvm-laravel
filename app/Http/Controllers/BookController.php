@@ -9,12 +9,15 @@ use App\repositories\BookRepository;
 use App\repositories\BookTypeRepository;
 use App\repositories\ExamTypeRepository;
 use App\repositories\VersionRepository;
-use App\Version;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    /**
+     * @var BookRepository 教材的增删改查；
+     * @var ExamTypeRepository 考试类型的增删改查；在新增教材表单中，须遍历并显示所有的考试类型。
+     * @var BookTypeRepository 教材分类的增删改查；在新增教材表单中，须便利并显示所有的教材类型。
+     * @var VersionRepository 版本的增删改查；在新增教材的同时可新增版本号。
+     */
     protected $book;
     protected $exam;
     protected $type;
@@ -29,21 +32,12 @@ class BookController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 显示教材列表；
+     * $exam：新增教材表单中的考试类型。
+     * $type：新增教材表单中的教材分类。
      */
     public function index()
     {
-        $book = Book::with('examType')->get()->map(function($item){
-            return [
-                'id' => $item['id'],
-                'book' => $item['book'],
-                'examId' => $item->examType->id
-            ];
-        });
-        dd($book->toArray());
-        exit;
         $list=$this->book->bookList();
         $exam=$this->exam->examList();
         $type=$this->type->typeList();
@@ -61,10 +55,7 @@ class BookController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 新增教材记录及版本记录。
      */
     public function store(StoreBook $request)
     {
@@ -75,10 +66,9 @@ class BookController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 显示教材详情。
+     * $version：取出该本教材的所有版本记录。
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -99,11 +89,8 @@ class BookController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 编辑教材。
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(EditBook $request, $id)
     {

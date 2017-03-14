@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BookType extends Model
+class Attachment extends Model
 {
     protected $fillable=[
-        'book_type',
+        'attachment','saved_at','status'
     ];
 
-    public function books(){
-        return $this->hasMany('App\Book');
+    public function attachmentable(){
+        return $this->morphTo();
     }
 
     public function user(){

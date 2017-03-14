@@ -37,10 +37,7 @@ class ExamTypeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 新增考试类型。
      */
     public function store(StoreExam $request)
     {
@@ -73,11 +70,7 @@ class ExamTypeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 编辑考试类型。
      */
     public function update(StoreExam $request, $id)
     {

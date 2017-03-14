@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExamType extends Model
 {
     protected $fillable=[
-        'exam_type','user_id'
+        'exam_type',
     ];
 
     public function user(){

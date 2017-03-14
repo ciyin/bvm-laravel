@@ -6,9 +6,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">添加附件</h4>
             </div>
-            <form method="post" action="">
+            <form method="post" action="{{route('attachment.store')}}">
                 {{csrf_field()}}
                 <div class="modal-body">
+                    <input type="hidden" name="book_id" value="{{$book->id}}">
                     <div class="form-group">
                         <label>附件名称：</label>
                         <input type="text" class="form-control" name="attachment">

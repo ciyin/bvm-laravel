@@ -16,9 +16,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 显示角色列表。
      */
     public function index()
     {
@@ -37,10 +35,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 新增角色。
      */
     public function store(StoreRole $request)
     {
@@ -71,11 +66,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 编辑角色。
      */
     public function update(StoreRole $request, $id)
     {

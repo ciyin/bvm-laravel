@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserRepository{
 
+//    取出所有用户记录；with user：取出创建人。
     public function userList(){
         $list=User::with('role','user')->get();
         return $list;
     }
 
+//    新增用户记录。
     public function storeUser($request){
         $user=new User();
         $user->name=$request->name;
@@ -29,6 +31,7 @@ class UserRepository{
         $user->save();
     }
 
+//    更新用户记录。
     public function updateUser($request,$id){
         $user=User::find($id);
         $user->name=$request->name;

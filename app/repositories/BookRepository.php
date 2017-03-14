@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Helper\Table;
 
 class BookRepository{
-
+//教材列表
     public function bookList(){
-        $list=Book::all();
+        $list=Book::with('examType','bookType','user')->get();
         return $list;
     }
-
+//新增教材
     public function storeBook($request){
         $book=new Book();
         $book->book=$request->book;
@@ -32,7 +32,7 @@ class BookRepository{
         $book->save();
         return $book;
     }
-
+//编辑教材
     public function updateBook($request,$id){
         $book=Book::find($id);
         $book->book=$request->book;

@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class VersionRepository{
 
-    public function versionList(){
-
-    }
-
+//    新增版本记录
     public function storeVersion($request){
         $version=new Version();
         $version->version=$request->version;

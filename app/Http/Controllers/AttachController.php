@@ -2,27 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreType;
-use App\repositories\BookTypeRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class BookTypeController extends Controller
+class AttachController extends Controller
 {
-    protected $type;
-    public function __construct(BookTypeRepository $type)
-    {
-        $this->type=$type;
-    }
-
     /**
-     * 显示教材分类列表。
+     * Display a listing of the resource.
      *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $list=$this->type->typeList();
-        return view('booktype/typePage',['types'=>$list]);
+
     }
 
     /**
@@ -36,14 +27,14 @@ class BookTypeController extends Controller
     }
 
     /**
-     * 新增教材分类。
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(StoreType $request)
+    public function store(Request $request)
     {
-        $user=Auth::user();
-        $type=$this->type->storeType($request);
-        $user->bookTypes()->save($type);
-        return redirect('/booktype');
+        //
     }
 
     /**
@@ -54,7 +45,9 @@ class BookTypeController extends Controller
      */
     public function show($id)
     {
-        //
+
+
+        return view('attachment/attachPage');
     }
 
     /**
@@ -69,12 +62,15 @@ class BookTypeController extends Controller
     }
 
     /**
-     * 编辑教材分类。
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(StoreType $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->type->updateType($request,$id);
-        return redirect('/booktype');
+        //
     }
 
     /**

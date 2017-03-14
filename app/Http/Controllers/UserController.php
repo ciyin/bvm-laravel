@@ -17,9 +17,8 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 显示用户列表；
+     * $role：新增用户表单中，须遍历并取出所有角色记录。
      */
     public function index(RoleRepository $role)
     {
@@ -39,10 +38,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 新增用户。
      */
     public function store(StoreUser $request)
     {
@@ -73,11 +69,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 更新用户信息。
      */
     public function update(Request $request, $id)
     {
