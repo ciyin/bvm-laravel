@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">新增教材</h4>
             </div>
-            <form method="post" action="{{route('book.store')}}">
+            <form method="post" action="{{route('book.store')}}" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="modal-body">
                     <div class="form-group">
@@ -52,10 +52,10 @@
                         <input type="text" class="form-control" id="addVersion" name="version">
                         <input type="hidden" name="update_reason" value="此版本为该书的第一个版本">
                     </div>
-                    {{--<div class="form-group">--}}
-                        {{--<label for="cover">封面：</label>--}}
-                        {{--<input type="file" class="form-control" id="cover" name="cover">--}}
-                    {{--</div>--}}
+                    <div class="form-group">
+                        <label for="cover">封面：</label>
+                        <input type="file" id="cover" name="cover">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

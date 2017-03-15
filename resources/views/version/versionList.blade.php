@@ -4,7 +4,7 @@
         <tr>
             <td width="10%" class="td">版本号：</td>
             <td width="80%" class="td">{{$version->version}}</td>
-            <td width="10%" class="td" rowspan="4"><img src="" alt="暂无封面"></td>
+            <td width="10%" class="td" rowspan="4"><img src=""></td>
         </tr>
         <tr>
             <td width="10%" class="td">改版时间：</td>

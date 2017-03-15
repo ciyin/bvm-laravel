@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttachmentsTable extends Migration
+class CreateCoversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateAttachmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attachments', function (Blueprint $table) {
+        Schema::create('covers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('book_id');
-            $table->integer('attachmentable_id');
-            $table->string('attachmentable_type');
-            $table->string('attachment');
-            $table->integer('status');
+            $table->integer('version_id');
+            $table->string('cover');
             $table->string('saved_at');
-            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateAttachmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attachments');
+        Schema::dropIfExists('covers');
     }
 }

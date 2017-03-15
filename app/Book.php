@@ -29,4 +29,9 @@ class Book extends Model
     public function attachments(){
         return $this->morphMany('App\Attachment','attachmentable');
     }
+
+    public function hasManyAttach(){
+        return $this->hasMany('App\Attachment');
+    }
+
 }

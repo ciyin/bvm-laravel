@@ -16,7 +16,7 @@ use Symfony\Component\Console\Helper\Table;
 class BookRepository{
 //教材列表
     public function bookList(){
-        $list=Book::with('examType','bookType','user')->get();
+        $list=Book::with('examType','bookType','user')->Paginate(10);
         return $list;
     }
 //新增教材

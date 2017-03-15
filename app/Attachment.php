@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     protected $fillable=[
-        'attachment','saved_at','status'
+        'book_id','attachment','saved_at','status'
     ];
 
     public function attachmentable(){
@@ -16,5 +16,9 @@ class Attachment extends Model
 
     public function user(){
         return $this->belongsTo('App\User');
+    }
+
+    public function book(){
+        return $this->belongsTo('App\Book');
     }
 }

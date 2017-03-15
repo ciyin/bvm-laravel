@@ -43,3 +43,14 @@
         </tr>
     @endforeach
 </table>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div style="float: left">
+            {{$books->links()}}
+        </div>
+        <div style="float: left;height: 95px;line-height: 95px;margin-left: 5px">
+            <small>每页15条，共100条</small>
+        </div>
+    </div>
+</div>

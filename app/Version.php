@@ -21,4 +21,8 @@ class Version extends Model
     public function attachments(){
         return $this->morphMany('App\Attachment','attachmentable');
     }
+
+    public function cover(){
+        return $this->hasOne('App\Cover');
+    }
 }

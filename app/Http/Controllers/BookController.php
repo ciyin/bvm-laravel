@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Book;
 use App\Http\Requests\EditBook;
 use App\Http\Requests\StoreBook;
 use App\repositories\BookRepository;
 use App\repositories\BookTypeRepository;
+use App\repositories\CoverRepository;
 use App\repositories\ExamTypeRepository;
 use App\repositories\VersionRepository;
+use App\Version;
+use Image;
+
 
 class BookController extends Controller
 {
@@ -22,12 +27,15 @@ class BookController extends Controller
     protected $exam;
     protected $type;
     protected $version;
-    public function __construct(BookRepository $book,ExamTypeRepository $exam,BookTypeRepository $type,VersionRepository $version)
+    protected $cover;
+    public function __construct(BookRepository $book,ExamTypeRepository $exam,BookTypeRepository $type,
+                                VersionRepository $version,CoverRepository $cover)
     {
         $this->book=$book;
         $this->exam=$exam;
         $this->type=$type;
         $this->version=$version;
+        $this->cover=$cover;
     }
 
 
@@ -62,6 +70,13 @@ class BookController extends Controller
         $book=$this->book->storeBook($request);
         $version=$this->version->storeVersion($request);
         $book->versions()->save($version);
+
+        if ($request->cover){
+            $version=Version::find($version->id);
+            $cover=$this->cover->storeCover($request);
+            $version->cover()->save($cover);
+        }
+
         return redirect('/book');
     }
 
@@ -73,7 +88,10 @@ class BookController extends Controller
     public function show($id)
     {
         $book=Book::find($id);
-        $version=$book->versions;
+        $version=$book->versions()->with('cover')->orderBy('created_at','desc')->get();
+
+//        dd($version->toArray());
+
         return view('book/bookDetails',['book'=>$book,'versions'=>$version]);
     }
 
