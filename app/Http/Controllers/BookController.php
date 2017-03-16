@@ -22,6 +22,7 @@ class BookController extends Controller
      * @var ExamTypeRepository 考试类型的增删改查；在新增教材表单中，须遍历并显示所有的考试类型。
      * @var BookTypeRepository 教材分类的增删改查；在新增教材表单中，须便利并显示所有的教材类型。
      * @var VersionRepository 版本的增删改查；在新增教材的同时可新增版本号。
+     * @var CoverRepository 新增封面；在新增教材时可新增封面。
      */
     protected $book;
     protected $exam;
@@ -89,11 +90,9 @@ class BookController extends Controller
     {
         $book=Book::find($id);
         $version=$book->versions()->with('cover')->orderBy('created_at','desc')->get();
-
-//        dd($version->toArray());
-
         return view('book/bookDetails',['book'=>$book,'versions'=>$version]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

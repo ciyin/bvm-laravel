@@ -22,6 +22,7 @@
     <style>
         .td {border: solid 1px gainsboro}
     </style>
+
 </head>
 <body>
     <div id="app">
@@ -86,5 +87,14 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        function showVersion() {
+            document.getElementById('versionDiv').style.display='block';
+        }
+
+        function hideVersion() {
+            document.getElementById('versionDiv').style.display='none';
+        }
+    </script>
 </body>
 </html>

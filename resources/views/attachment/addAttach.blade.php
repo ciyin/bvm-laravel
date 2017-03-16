@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">添加附件</h4>
             </div>
-            <form method="post" action="{{route('attachment.store')}}">
+            <form method="post" action="{{route('attachment.store')}}" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="modal-body">
                     <input type="hidden" name="book_id" value="{{$book->id}}">
@@ -14,38 +14,31 @@
                         <label>附件名称：</label>
                         <input type="text" class="form-control" name="attachment">
                     </div>
-                    <div>
-                        <label>是否通用：</label>
+                    <div class="form-group">
+                        <label>适用于：</label>
                         <label class="radio-inline">
-                            <input type="radio" name="is_general" value="1"> 是
+                            <input type="radio" name="is_general" value="1" onclick="hideVersion()"> 全部版本
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="is_general" value="0"> 否
+                            <input type="radio" name="is_general" value="0" onclick="showVersion()"> 特定版本
                         </label>
                     </div>
-                    <div>
-                        <label>关联版本号：</label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">V1.00
+                    <div class="form-group" style="display: none" id="versionDiv">
+                        <label>关联版本：</label>
+                        @foreach($versions as $version)
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="related_version" value="{{$version->id}}"> {{$version->version}}
                             </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">V1.00
-                            </label>
-                        </div>
+                        @endforeach
                     </div>
-                    <div>
-                        <label>使用状态：</label>
-                        <label class="radio-inline">
-                            <input type="radio" name="status" value="1" checked> 启用
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="status" value="0"> 停用
-                        </label>
+                    <div class="form-group">
+                        <label>备注：</label>
+                        <textarea class="form-control" rows="3" name="note"></textarea>
                     </div>
-
+                    <div class="form-group">
+                        <label for="attachments">附件：</label>
+                        <input type="file" id="attachments" name="attachments">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -55,3 +48,5 @@
         </div>
     </div>
 </div>
+
+

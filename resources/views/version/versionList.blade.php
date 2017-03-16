@@ -4,7 +4,13 @@
         <tr>
             <td width="10%" class="td">版本号：</td>
             <td width="80%" class="td">{{$version->version}}</td>
-            <td width="10%" class="td" rowspan="4"><img src=""></td>
+            <td width="10%" class="td" rowspan="4">
+                @if($version->cover)
+                    <img src="{{asset('cover/'.$version->cover->cover)}}">
+                @else
+                    <img src="" alt="暂无封面">
+                @endif
+            </td>
         </tr>
         <tr>
             <td width="10%" class="td">改版时间：</td>

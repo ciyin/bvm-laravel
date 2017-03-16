@@ -17,15 +17,14 @@ class CoverRepository{
     public function storeCover($request){
 
 //        将图片保存到文件夹中
-        $cover_name=$request->cover;
+        $tmp_name=$request->cover;
         $random_name=str_random(6).'.jpg';
         $path=public_path().'/cover/'.$random_name;
-        Image::make($cover_name)->resize(95,138)->save($path);
+        Image::make($tmp_name)->resize(95,138)->save($path);
 
 //        将图片信息保存到数据表中
-
         $cover=new Cover();
-        $cover->cover=$cover_name;
+        $cover->cover=$random_name;
         $cover->saved_at=$path;
         return $cover;
     }

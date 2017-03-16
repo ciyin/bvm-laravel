@@ -20,6 +20,7 @@ class CreateAttachmentsTable extends Migration
             $table->string('attachmentable_type');
             $table->string('attachment');
             $table->integer('status');
+            $table->string('note');
             $table->string('saved_at');
             $table->string('user_id');
             $table->timestamps();

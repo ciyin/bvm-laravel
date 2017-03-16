@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use Illuminate\Http\Request;
 
-class CoverController extends Controller
+class AttachmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class CoverController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,7 +35,7 @@ class CoverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->toArray());
     }
 
     /**
@@ -45,7 +46,9 @@ class CoverController extends Controller
      */
     public function show($id)
     {
-        //
+        $book=Book::find($id);
+        $version=$book->versions()->get();
+        return view('attachment/attachPage',['book'=>$book,'versions'=>$version]);
     }
 
     /**

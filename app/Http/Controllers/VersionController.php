@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Http\Requests\StoreVersion;
+use App\repositories\CoverRepository;
 use App\repositories\VersionRepository;
 use Illuminate\Http\Request;
+use App\Version;
 
 
 class VersionController extends Controller
 {
     protected $version;
-    public function __construct(VersionRepository $version)
+    protected $cover;
+    public function __construct(VersionRepository $version,CoverRepository $cover)
     {
         $this->version=$version;
+        $this->cover=$cover;
     }
 
     /**
@@ -41,10 +45,18 @@ class VersionController extends Controller
      */
     public function store(StoreVersion $request)
     {
-//      改版表单中设置一个隐藏的input，用来传递教材的id。
+//      新增版本记录：改版表单中设置一个隐藏的input，用来传递教材的id。
         $book=Book::find($request->book_id);
         $version=$this->version->storeVersion($request);
         $book->versions()->save($version);
+
+//      新增封面记录
+        if ($request->cover){
+            $version=Version::find($version->id);
+            $cover=$this->cover->storeCover($request);
+            $version->cover()->save($cover);
+        }
+
         return redirect('/book');
     }
 

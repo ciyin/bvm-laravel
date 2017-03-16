@@ -31,6 +31,4 @@ Route::resource('book','BookController');
 
 Route::resource('version','VersionController');
 
-Route::resource('attachment','AttachController');
-
-Route::resource('cover','CoverController');
+Route::resource('attachment','AttachmentController');

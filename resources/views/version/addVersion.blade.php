@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">教材改版</h4>
             </div>
-            <form method="post" action="{{route('version.store')}}">
+            <form method="post" action="{{route('version.store')}}" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="modal-body">
                     <div>
@@ -26,9 +26,9 @@
                         <label>改版说明：</label>
                         <textarea class="form-control" rows="3" name="update_reason"></textarea>
                     </div>
-                    <div>
-                        <label>封面：</label>
-                        <input type="file">
+                    <div class="form-group">
+                        <label for="cover">封面：</label>
+                        <input type="file" id="cover" name="cover">
                     </div>
                 </div>
                 <div class="modal-footer">
