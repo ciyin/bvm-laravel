@@ -10,10 +10,12 @@
                 {{csrf_field()}}
                 <div class="modal-body">
                     <input type="hidden" name="book_id" value="{{$book->id}}">
+
                     <div class="form-group">
-                        <label>附件名称：</label>
-                        <input type="text" class="form-control" name="attachment">
+                        <label for="attachment">附件：</label>
+                        <input type="file" id="attachment" name="attachment">
                     </div>
+
                     <div class="form-group">
                         <label>适用于：</label>
                         <label class="radio-inline">
@@ -23,22 +25,21 @@
                             <input type="radio" name="is_general" value="0" onclick="showVersion()"> 特定版本
                         </label>
                     </div>
+
                     <div class="form-group" style="display: none" id="versionDiv">
                         <label>关联版本：</label>
                         @foreach($versions as $version)
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="related_version" value="{{$version->id}}"> {{$version->version}}
+                                <input type="checkbox" name="related_version[]" value="{{$version->id}}"> {{$version->version}}
                             </label>
                         @endforeach
                     </div>
+
                     <div class="form-group">
                         <label>备注：</label>
                         <textarea class="form-control" rows="3" name="note"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="attachments">附件：</label>
-                        <input type="file" id="attachments" name="attachments">
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

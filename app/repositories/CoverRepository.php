@@ -19,7 +19,7 @@ class CoverRepository{
 //        将图片保存到文件夹中
         $tmp_name=$request->cover;
         $random_name=str_random(6).'.jpg';
-        $path=public_path().'/cover/'.$random_name;
+        $path=public_path().'/cover/ '.$random_name;
         Image::make($tmp_name)->resize(95,138)->save($path);
 
 //        将图片信息保存到数据表中

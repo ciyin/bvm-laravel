@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\repositories\AttachmentRepository;
 use Illuminate\Http\Request;
 
 class AttachmentController extends Controller
 {
+    protected $attachment;
+    public function __construct(AttachmentRepository $attachment)
+    {
+        return $this->attachment=$attachment;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +42,7 @@ class AttachmentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->toArray());
+       $this->attachment->storeAttachment($request);
     }
 
     /**

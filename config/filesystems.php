@@ -62,6 +62,21 @@ return [
             'bucket' => 'your-bucket',
         ],
 
+//      七牛
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domains' => [
+                'default'   => 'omxw6hgtc.bkt.clouddn.com',
+                'https'     => '',
+                'custom'    => 'bvm.com',
+            ],
+            'access_key'=> 'wnf2D0aDYfvjIyjdeoYx4KqrQQAJvaZDcPXsdxhK',  //AccessKey
+            'secret_key'=> 'z3Gbw3vBxhlqwFFgBd-e9571grydkowDqEEg253y',  //SecretKey
+            'bucket'    => 'bvm-attachment',  //Bucket名字
+            'notify_url'=> '',  //持久化处理回调地址
+        ],
+
+
     ],
 
 ];

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     protected $fillable=[
-        'book_id','attachment','saved_at','status','note'
+        'book_id','original_name','random_name','saved_at','status','note','attachmentable_id','attachmentable_type',
     ];
 
 //  获取该附件所关联的其他模型

@@ -18,7 +18,8 @@ class CreateAttachmentsTable extends Migration
             $table->integer('book_id');
             $table->integer('attachmentable_id');
             $table->string('attachmentable_type');
-            $table->string('attachment');
+            $table->string('original_name');
+            $table->string('random_name');
             $table->integer('status');
             $table->string('note');
             $table->string('saved_at');

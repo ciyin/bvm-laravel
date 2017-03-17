@@ -16,8 +16,10 @@ class CreateCoversTable extends Migration
         Schema::create('covers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('version_id');
-            $table->string('cover');
+            $table->string('original_name');
+            $table->string('random_name');
             $table->string('saved_at');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
