@@ -25,16 +25,11 @@ class BookController extends Controller
      * @var CoverRepository 新增封面；在新增教材时可新增封面。
      */
     protected $book;
-    protected $exam;
-    protected $type;
     protected $version;
     protected $cover;
-    public function __construct(BookRepository $book,ExamTypeRepository $exam,BookTypeRepository $type,
-                                VersionRepository $version,CoverRepository $cover)
+    public function __construct(BookRepository $book, VersionRepository $version,CoverRepository $cover)
     {
         $this->book=$book;
-        $this->exam=$exam;
-        $this->type=$type;
         $this->version=$version;
         $this->cover=$cover;
     }
@@ -45,12 +40,9 @@ class BookController extends Controller
      * $exam：新增教材表单中的考试类型。
      * $type：新增教材表单中的教材分类。
      */
-    public function index()
+    public function index(ExamTypeRepository $exam,BookTypeRepository $type)
     {
-        $list=$this->book->bookList();
-        $exam=$this->exam->examList();
-        $type=$this->type->typeList();
-        return view('book/bookPage',['books'=>$list,'exams'=>$exam,'types'=>$type]);
+        return view('book/bookPage',['books'=>$this->book->bookList(),'exams'=>$exam->examList(),'types'=>$type->typeList()]);
     }
 
     /**
@@ -73,11 +65,8 @@ class BookController extends Controller
         $book->versions()->save($version);
 
         if ($request->cover){
-            $version=Version::find($version->id);
-            $cover=$this->cover->storeCover($request);
-            $version->cover()->save($cover);
+            Version::find($version->id)->cover()->save($this->cover->storeCover($request));
         }
-
         return redirect('/book');
     }
 
@@ -89,8 +78,9 @@ class BookController extends Controller
     public function show($id)
     {
         $book=Book::find($id);
-        $version=$book->versions()->with('cover')->orderBy('created_at','desc')->get();
-        return view('book/bookDetails',['book'=>$book,'versions'=>$version]);
+        $version=$book->versions()->with('cover','attachments')->orderBy('created_at','desc')->get();
+        $book_attachments=$book->attachments()->get();
+        return view('book/bookDetails',['book'=>$book,'versions'=>$version,'attachments'=>$book_attachments]);
     }
 
 

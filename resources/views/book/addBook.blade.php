@@ -30,6 +30,15 @@
                         @endforeach
                     </div>
                     <div>
+                        <label>使用分类：</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="using_type" value="学生用书">学生用书
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="using_type" value="教师用书">教师用书
+                        </label>
+                    </div>
+                    <div>
                         <label>使用状态：</label>
                         <label class="radio-inline">
                             <input type="radio" name="status" value="1" checked> 启用

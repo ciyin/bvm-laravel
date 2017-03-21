@@ -24,7 +24,8 @@ class StoreAttachment extends FormRequest
     public function rules()
     {
         return [
-            //
+            'attachment'=>'required|file',
+            'is_general'=>'required',
         ];
     }
 }

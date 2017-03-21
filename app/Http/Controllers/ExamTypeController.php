@@ -22,8 +22,7 @@ class ExamTypeController extends Controller
      */
     public function index()
     {
-        $list=$this->exam->examList();
-        return view('examtype/examPage',['exams'=>$list]);
+        return view('examtype/examPage',['exams'=>$this->exam->examList()]);
     }
 
     /**
@@ -41,9 +40,7 @@ class ExamTypeController extends Controller
      */
     public function store(StoreExam $request)
     {
-        $user=Auth::user();
-        $exam=$this->exam->storeExam($request);
-        $user->examTypes()->save($exam);
+        Auth::user()->examTypes()->save($this->exam->storeExam($request));
         return redirect('/examtype');
     }
 

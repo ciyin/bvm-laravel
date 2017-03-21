@@ -4,8 +4,8 @@
         <td>教材</td>
         <td>考试类型</td>
         <td>教材分类</td>
+        <td>使用分类</td>
         <td>状态</td>
-        <td>最新版本号</td>
         <td>创建人</td>
         <td>创建时间</td>
         <td>操作</td>
@@ -16,12 +16,12 @@
             <td>{{$book->book}}</td>
             <td>{{$book->examType->exam_type}}</td>
             <td>{{$book->bookType->book_type}}</td>
+            <td>{{$book->using_type}}</td>
             @if($book->status==1)
                 <td>使用中</td>
             @else
                 <td>停用</td>
             @endif
-            <td>{{$book->version}}</td>
             <td>{{$book->user->name}}</td>
             <td>{{$book->created_at}}</td>
             <td>
@@ -36,9 +36,6 @@
                     改版
                 </button>
                 @include('version.addVersion')
-                <a href="{{route('attachment.show',$book->id)}}" target="_blank">
-                    <button type="button" class="btn btn-default btn-xs">附件</button>
-                </a>
             </td>
         </tr>
     @endforeach

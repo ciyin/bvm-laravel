@@ -13,12 +13,12 @@ use App\Version;
 use Illuminate\Support\Facades\Auth;
 
 class AttachmentRepository{
-    protected $attachment;
 
 //    实例化attachment对象
-    public function newAttachment($request,$original_name,$random_name,$saved_at){
+    public function newAttachment($request,$random_name,$saved_at){
+        $file=$request->file('attachment');
         $attachment=new Attachment();
-        $attachment->original_name=$original_name;
+        $attachment->original_name=$file->getClientOriginalName();
         $attachment->random_name=$random_name;
         $attachment->status='1';
         $attachment->note=$request->note;
@@ -27,30 +27,22 @@ class AttachmentRepository{
         return $attachment;
     }
 
-//       保存附件
+//      保存附件：先将附件保存到七牛，再取得附件保存路径，最后保存到数据库。
     public function storeAttachment($request){
         $file=$request->file('attachment');
-        $original_name=$file->getClientOriginalName(); //得到附件的名称
-        $ext=$file->getClientOriginalExtension(); //得到附件的后缀名
-        $realPath=$file->getRealPath(); //得到附件的绝对存储路径
-        $random_name=str_random(5).'.'.$ext; //重新命名附件名称再保存，防止原附件名称有不可识别的字符，到时取不出来
-        $disk=\Storage::disk('qiniu'); //选择存储的磁盘
-        $res=$disk->put($random_name,file_get_contents($realPath)); //将附件保存到七牛
-//       如果成功保存，则返回附件的保存地址，并将附件信息存入库；
+        $random_name=str_random(5).'.'.$file->getClientOriginalExtension();
+        $disk=\Storage::disk('qiniu');
+        $res=$disk->put($random_name,file_get_contents($file->getRealPath()));
         if ($res){
             $saved_at=$disk->getDriver()->downloadUrl($random_name);
             $versions=$request->related_version;
             if ($versions){
                 $count=count($versions);
                 for ($i=0;$i<$count;$i++){
-                    $this->attachment=$this->newAttachment($request,$original_name,$random_name,$saved_at);
-                    $version=Version::find($versions[$i]);
-                    $version->attachments()->save($this->attachment);
+                    Version::find($versions[$i])->attachments()->save($this->newAttachment($request,$random_name,$saved_at));
                 }
             }else{
-                $this->attachment=$this->newAttachment($request,$original_name,$random_name,$saved_at);
-                $book=Book::find($request->book_id);
-                $book->attachments()->save($this->attachment);
+                Book::find($request->book_id)->attachments()->save($this->newAttachment($request,$random_name,$saved_at));
             }
         }
     }

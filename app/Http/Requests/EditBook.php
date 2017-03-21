@@ -26,6 +26,7 @@ class EditBook extends FormRequest
         return [
             'exam_type'=>'required',
             'book_type'=>'required',
+            'using_type'=>'required',
             'status'=>'required',
             'contents'=>'required|string',
             'using_instruction'=>'required|string',

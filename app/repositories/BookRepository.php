@@ -25,6 +25,7 @@ class BookRepository{
         $book->book=$request->book;
         $book->exam_type_id=$request->exam_type;
         $book->book_type_id=$request->book_type;
+        $book->using_type=$request->using_type;
         $book->contents=$request->contents;
         $book->using_instruction=$request->using_instruction;
         $book->status=$request->status;
@@ -38,6 +39,7 @@ class BookRepository{
         $book->book=$request->book;
         $book->exam_type_id=$request->exam_type;
         $book->book_type_id=$request->book_type;
+        $book->using_type=$request->using_type;
         $book->contents=$request->contents;
         $book->using_instruction=$request->using_instruction;
         $book->status=$request->status;

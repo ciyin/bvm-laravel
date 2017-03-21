@@ -46,15 +46,13 @@ class VersionController extends Controller
     public function store(StoreVersion $request)
     {
 //      新增版本记录：改版表单中设置一个隐藏的input，用来传递教材的id。
-        $book=Book::find($request->book_id);
         $version=$this->version->storeVersion($request);
-        $book->versions()->save($version);
+        Book::find($request->book_id)->versions()->save($version);
 
 //      新增封面记录
         if ($request->cover){
             $version=Version::find($version->id);
-            $cover=$this->cover->storeCover($request);
-            $version->cover()->save($cover);
+            $version->cover()->save($this->cover->storeCover($request));
         }
 
         return redirect('/book');

@@ -13,6 +13,10 @@
                         <label for="addExam">考试类型：</label>
                         <input type="text" class="form-control" id="addExam" name="exam_type">
                     </div>
+                    <div class="form-group">
+                        <lable>科目：</lable>
+                        <input type="text">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

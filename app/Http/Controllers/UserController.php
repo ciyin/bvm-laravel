@@ -22,9 +22,7 @@ class UserController extends Controller
      */
     public function index(RoleRepository $role)
     {
-        $role=$role->roleList();
-        $list=$this->user->userList();
-        return view('user/userPage',['users'=>$list,'roles'=>$role]);
+        return view('user/userPage',['users'=>$this->user->userList(),'roles'=>$role->roleList()]);
     }
 
     /**

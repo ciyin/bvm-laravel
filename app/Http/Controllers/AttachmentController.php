@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use App\Book;
+use App\Http\Requests\StoreAttachment;
 use App\repositories\AttachmentRepository;
 use Illuminate\Http\Request;
 
@@ -40,9 +42,13 @@ class AttachmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAttachment $request)
     {
-       $this->attachment->storeAttachment($request);
+        $this->attachment->storeAttachment($request);
+        $book=Book::find($request->book_id);
+        $version=$book->versions()->with('cover','attachments')->orderBy('created_at','desc')->get();
+        $book_attachments=$book->attachments()->get();
+        return view('book/bookDetails',['book'=>$book,'versions'=>$version,'attachments'=>$book_attachments]);
     }
 
     /**
@@ -53,9 +59,7 @@ class AttachmentController extends Controller
      */
     public function show($id)
     {
-        $book=Book::find($id);
-        $version=$book->versions()->get();
-        return view('attachment/attachPage',['book'=>$book,'versions'=>$version]);
+
     }
 
     /**

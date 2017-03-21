@@ -32,3 +32,5 @@ Route::resource('book','BookController');
 Route::resource('version','VersionController');
 
 Route::resource('attachment','AttachmentController');
+
+Route::resource('usingtype','UsingTypeController');

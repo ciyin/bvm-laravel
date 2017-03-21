@@ -26,6 +26,7 @@ class StoreVersion extends FormRequest
         return [
             'version'=>'required|string',
             'update_reason'=>'required|string|max:255',
+            'cover'=>'image',
         ];
     }
 }

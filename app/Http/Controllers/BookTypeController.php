@@ -21,8 +21,7 @@ class BookTypeController extends Controller
      */
     public function index()
     {
-        $list=$this->type->typeList();
-        return view('booktype/typePage',['types'=>$list]);
+        return view('booktype/typePage',['types'=>$this->type->typeList()]);
     }
 
     /**
@@ -40,9 +39,7 @@ class BookTypeController extends Controller
      */
     public function store(StoreType $request)
     {
-        $user=Auth::user();
-        $type=$this->type->storeType($request);
-        $user->bookTypes()->save($type);
+        Auth::user()->bookTypes()->save($this->type->storeType($request));
         return redirect('/booktype');
     }
 

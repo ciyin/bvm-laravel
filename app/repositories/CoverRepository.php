@@ -9,23 +9,24 @@
 namespace App\repositories;
 
 use App\Cover;
+use Illuminate\Support\Facades\Auth;
 use Image;
 
 class CoverRepository{
 
 //    保存封面
     public function storeCover($request){
-
-//        将图片保存到文件夹中
-        $tmp_name=$request->cover;
-        $random_name=str_random(6).'.jpg';
-        $path=public_path().'/cover/ '.$random_name;
-        Image::make($tmp_name)->resize(95,138)->save($path);
-
-//        将图片信息保存到数据表中
-        $cover=new Cover();
-        $cover->cover=$random_name;
-        $cover->saved_at=$path;
-        return $cover;
+        $file=$request->file('cover');
+        $random_name=str_random(5).'.'.$file->getClientOriginalExtension();
+        $disk=\Storage::disk('qiniu');
+        $res=$disk->put($random_name,file_get_contents($file->getRealPath()));
+        if ($res){
+            $cover=new Cover();
+            $cover->original_name=$file->getClientOriginalName();
+            $cover->random_name=$random_name;
+            $cover->saved_at=$disk->getDriver()->downloadUrl($random_name);
+            $cover->user_id=Auth::id();
+            return $cover;
+        }
     }
 }

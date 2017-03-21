@@ -27,10 +27,12 @@ class StoreBook extends FormRequest
             'book'=>'required|string|unique:books,book',
             'exam_type'=>'required',
             'book_type'=>'required',
+            'using_type'=>'required',
             'status'=>'required',
             'contents'=>'required|string',
             'using_instruction'=>'required|string',
             'version'=>'required|string',
+            'cover'=>'image',
         ];
     }
 }
