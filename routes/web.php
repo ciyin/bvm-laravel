@@ -33,4 +33,4 @@ Route::resource('version','VersionController');
 
 Route::resource('attachment','AttachmentController');
 
-Route::resource('usingtype','UsingTypeController');
+Route::resource('subject','SubjectController');

@@ -1,22 +1,18 @@
-{{--新增考试类型--}}
-<div class="modal fade" id="addExam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+{{--新增科目--}}
+<div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">新增考试类型</h4>
+                <h4 class="modal-title" id="myModalLabel">新增科目</h4>
             </div>
-            <form method="post" action="{{route('examtype.store')}}">
+            <form method="post" action="{{route('subject.store')}}">
                 {{csrf_field()}}
+                <input type="hidden" name="exam_type_id" value="{{$exam->id}}">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="addExam">考试类型：</label>
-                        <input type="text" class="form-control" id="addExam" name="exam_type">
-                    </div>
                     <div class="form-group">
                         <label for="subject">科目：</label>
                         <input type="text" class="form-control" id="subject" name="subject">
-                        <span><small>提示：科目之间请用“/”隔开。例：阅读/听力/口语/写作</small></span>
                     </div>
                 </div>
                 <div class="modal-footer">

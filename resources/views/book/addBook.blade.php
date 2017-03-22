@@ -14,14 +14,6 @@
                         <input type="text" class="form-control" id="addBook" name="book">
                     </div>
                     <div>
-                        <label>考试类型：</label>
-                        @foreach($exams as $exam)
-                            <label class="radio-inline">
-                                <input type="radio" name="exam_type" value="{{$exam->id}}">{{$exam->exam_type}}
-                            </label>
-                        @endforeach
-                    </div>
-                    <div>
                         <label>教材分类：</label>
                         @foreach($types as $type)
                             <label class="radio-inline">
@@ -46,6 +38,21 @@
                         <label class="radio-inline">
                             <input type="radio" name="status" value="0"> 停用
                         </label>
+                    </div>
+                    <div>
+                        <label>考试类型：</label>
+                        @foreach($exams as $exam)
+                            <label class="radio-inline">
+                                <input type="radio" name="exam_type" value="{{$exam->id}}">{{$exam->exam_type}}
+                            </label>
+                        @endforeach
+                    </div>
+                    <div>
+                        <label>科目：</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="subject_id" value="0">不限
+                        </label>
+
                     </div>
                     <div>
                         <label>内容简介：</label>

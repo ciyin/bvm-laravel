@@ -6,15 +6,13 @@
  * Time: 16:22
  */
 namespace App\repositories;
-
 use App\ExamType;
-use Illuminate\Support\Facades\Auth;
 
 class ExamTypeRepository{
 
 //    取出所有考试类型。
     public function examList(){
-        $list=ExamType::with('user')->get();
+        $list=ExamType::with('user','subjects')->get();
         return $list;
     }
 

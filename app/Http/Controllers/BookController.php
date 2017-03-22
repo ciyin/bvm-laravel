@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Book;
+use App\ExamType;
 use App\Http\Requests\EditBook;
 use App\Http\Requests\StoreBook;
 use App\repositories\BookRepository;
@@ -42,7 +43,8 @@ class BookController extends Controller
      */
     public function index(ExamTypeRepository $exam,BookTypeRepository $type)
     {
-        return view('book/bookPage',['books'=>$this->book->bookList(),'exams'=>$exam->examList(),'types'=>$type->typeList()]);
+
+        return view('book/bookPage', ['books'=>$this->book->bookList(),'exams'=>$exam->examList(),'types'=>$type->typeList(),]);
     }
 
     /**

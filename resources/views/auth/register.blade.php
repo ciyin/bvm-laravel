@@ -59,6 +59,12 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div>
+                            <input type="text" name="role_id" value="1">
+                            <input type="text" name="city" value="上海">
+                            <input type="text" name="status" value="1">
+                        </div>
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

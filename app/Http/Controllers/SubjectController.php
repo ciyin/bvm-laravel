@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\StoreExam;
-use App\repositories\ExamTypeRepository;
+use App\ExamType;
 use App\Subject;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class ExamTypeController extends Controller
+class SubjectController extends Controller
 {
-    protected $exam;
-    public function __construct(ExamTypeRepository $exam)
-    {
-        $this->exam=$exam;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +15,7 @@ class ExamTypeController extends Controller
      */
     public function index()
     {
-        return view('examtype/examPage',['exams'=>$this->exam->examList()]);
+        //
     }
 
     /**
@@ -37,20 +29,18 @@ class ExamTypeController extends Controller
     }
 
     /**
-     * 新增考试类型。
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(StoreExam $request)
+    public function store(Request $request)
     {
-        $exam=Auth::user()->examTypes()->save($this->exam->storeExam($request));
-        $subjects=explode('/',$request->subject);
-        for ($i=0;$i<count($subjects);$i++){
-            $subject=new Subject();
-            $subject->subject=$subjects[$i];
-            $exam->subjects()->save($subject);
-        }
+        $subject=new Subject();
+        $subject->subject=$request->subject;
+        ExamType::find($request->exam_type_id)->subjects()->save($subject);
         return redirect('/examtype');
     }
-
 
     /**
      * Display the specified resource.
@@ -75,12 +65,15 @@ class ExamTypeController extends Controller
     }
 
     /**
-     * 编辑考试类型。
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(StoreExam $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->exam->updateExam($request,$id);
-        return redirect('/examtype');
+        //
     }
 
     /**

@@ -3,11 +3,10 @@
         <td>序号</td>
         <td>教材</td>
         <td>考试类型</td>
+        <td>科目</td>
         <td>教材分类</td>
         <td>使用分类</td>
         <td>状态</td>
-        <td>创建人</td>
-        <td>创建时间</td>
         <td>操作</td>
     </tr>
     @foreach($books as $book)
@@ -15,6 +14,7 @@
             <td>{{$book->id}}</td>
             <td>{{$book->book}}</td>
             <td>{{$book->examType->exam_type}}</td>
+            <td>科目</td>
             <td>{{$book->bookType->book_type}}</td>
             <td>{{$book->using_type}}</td>
             @if($book->status==1)
@@ -22,8 +22,6 @@
             @else
                 <td>停用</td>
             @endif
-            <td>{{$book->user->name}}</td>
-            <td>{{$book->created_at}}</td>
             <td>
                 <a href="{{route('book.show',$book->id)}}" target="_blank">
                     <button type="button" class="btn btn-default btn-xs">详情</button>

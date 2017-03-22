@@ -37,7 +37,7 @@ class User extends Authenticatable
 // 添加考试类型记录：$user->examTypes()->save();
 // 获取该用户所添加的所有考试类型记录：$user->examTypes()->get();
     public function examTypes(){
-        return $this->hasMany('APP\ExamType');
+        return $this->hasMany('App\ExamType');
     }
 
 // 关联教材类型

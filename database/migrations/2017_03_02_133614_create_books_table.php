@@ -18,7 +18,8 @@ class CreateBooksTable extends Migration
             $table->string('book');
             $table->integer('exam_type_id');
             $table->integer('book_type_id');
-            $table->integer('using_type');
+            $table->integer('subject_id');
+            $table->string('using_type');
             $table->integer('user_id');
             $table->integer('status');
             $table->string('contents');

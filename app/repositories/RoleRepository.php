@@ -5,6 +5,7 @@
  * Date: 2017/3/1
  * Time: 15:15
  */
+
 namespace App\repositories;
 
 use App\Role;

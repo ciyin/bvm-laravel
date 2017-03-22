@@ -41,5 +41,9 @@ class Book extends Model
     public function attachments(){
         return $this->morphMany('App\Attachment','attachmentable');
     }
+// 关联科目
+    public function subjects(){
+        return $this->hasManyThrough('App\Subject','App\ExamType');
+    }
 
 }

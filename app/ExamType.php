@@ -21,4 +21,9 @@ class ExamType extends Model
     public function books(){
         return $this->hasMany('App\Book');
     }
+
+// 关联科目
+    public function subjects(){
+        return $this->hasMany('App\Subject');
+    }
 }

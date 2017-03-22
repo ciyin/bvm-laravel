@@ -35,15 +35,21 @@ class AttachmentRepository{
         $res=$disk->put($random_name,file_get_contents($file->getRealPath()));
         if ($res){
             $saved_at=$disk->getDriver()->downloadUrl($random_name);
-            $versions=$request->related_version;
-            if ($versions){
-                $count=count($versions);
-                for ($i=0;$i<$count;$i++){
-                    Version::find($versions[$i])->attachments()->save($this->newAttachment($request,$random_name,$saved_at));
-                }
+//            如果选择的是全部版本
+            if ($request->is_general) {
+                Book::find($request->book_id)->attachments()->save($this->newAttachment($request, $random_name, $saved_at));
             }else{
-                Book::find($request->book_id)->attachments()->save($this->newAttachment($request,$random_name,$saved_at));
+                $versions=$request->related_version;
+                if ($versions){
+                    $count=count($versions);
+                    for ($i=0;$i<$count;$i++){
+                        Version::find($versions[$i])->attachments()->save($this->newAttachment($request,$random_name,$saved_at));
+                    }
+                }
             }
         }
     }
+
+
+
 }

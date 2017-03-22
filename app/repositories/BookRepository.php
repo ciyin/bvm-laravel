@@ -24,6 +24,7 @@ class BookRepository{
         $book=new Book();
         $book->book=$request->book;
         $book->exam_type_id=$request->exam_type;
+        $book->subject_id=$request->subject_id;
         $book->book_type_id=$request->book_type;
         $book->using_type=$request->using_type;
         $book->contents=$request->contents;
