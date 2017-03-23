@@ -88,13 +88,25 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script>
+        {{--新增附件的表单中，当点击全部版本时，隐藏版本选项；点击特定版本时，显示版本选项。--}}
         function showVersion() {
             document.getElementById('versionDiv').style.display='block';
         }
-
         function hideVersion() {
             document.getElementById('versionDiv').style.display='none';
         }
+        {{--新增教材的表单中，点击考试类型时，显示其相应的科目--}}
+        function showSubject(id) {
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function () {
+                if (xhr.readyState==4 && xhr.status==200){
+                    document.getElementById('subject').innerHTML=xhr.responseText;
+                }
+            };
+            xhr.open('get','/subject/'+id,true);
+            xhr.send();
+        }
+
     </script>
 </body>
 </html>

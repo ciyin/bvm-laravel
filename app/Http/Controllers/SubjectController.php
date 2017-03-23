@@ -50,7 +50,8 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $subjects=ExamType::find($id)->subjects()->get();
+        return view('subject/subjectRadio',['subjects'=>$subjects]);
     }
 
     /**

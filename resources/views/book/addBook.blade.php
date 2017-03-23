@@ -39,21 +39,19 @@
                             <input type="radio" name="status" value="0"> 停用
                         </label>
                     </div>
+
                     <div>
                         <label>考试类型：</label>
                         @foreach($exams as $exam)
                             <label class="radio-inline">
-                                <input type="radio" name="exam_type" value="{{$exam->id}}">{{$exam->exam_type}}
+                                <input type="radio" name="exam_type" value="{{$exam->id}}" onclick="showSubject(this.value)">{{$exam->exam_type}}
                             </label>
                         @endforeach
                     </div>
-                    <div>
-                        <label>科目：</label>
-                        <label class="radio-inline">
-                            <input type="radio" name="subject_id" value="0">不限
-                        </label>
 
-                    </div>
+                    {{--考试科目预留位置：点击考试类型时，显示其对应的考试科目--}}
+                    <div id="subject"></div>
+
                     <div>
                         <label>内容简介：</label>
                         <textarea class="form-control" rows="3" name="contents"></textarea>

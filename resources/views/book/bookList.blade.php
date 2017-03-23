@@ -14,7 +14,7 @@
             <td>{{$book->id}}</td>
             <td>{{$book->book}}</td>
             <td>{{$book->examType->exam_type}}</td>
-            <td>科目</td>
+            <td>{{$book->subject['subject']}}</td>
             <td>{{$book->bookType->book_type}}</td>
             <td>{{$book->using_type}}</td>
             @if($book->status==1)

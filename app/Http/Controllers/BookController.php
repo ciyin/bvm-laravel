@@ -43,7 +43,6 @@ class BookController extends Controller
      */
     public function index(ExamTypeRepository $exam,BookTypeRepository $type)
     {
-
         return view('book/bookPage', ['books'=>$this->book->bookList(),'exams'=>$exam->examList(),'types'=>$type->typeList(),]);
     }
 
