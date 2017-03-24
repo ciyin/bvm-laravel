@@ -14,13 +14,7 @@
             </div>
             <div class="col-lg-10 col-md-10 col-xs-10">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-6">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addRole">
-                            新增
-                        </button>
-                        @include('role/addRole')
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-6">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
                         <div style="float: right">
                             <form>
                                 <input type="text">
@@ -31,7 +25,7 @@
                 </div>
                 <div class="row" style="margin-top: 10px">
                     <div class="col-lg-12 col-md-12 col-xs-12">
-                        @include('role/roleList')
+                        @include('log/logList')
                     </div>
                 </div>
             </div>

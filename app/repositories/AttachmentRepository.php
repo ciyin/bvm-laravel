@@ -16,9 +16,8 @@ class AttachmentRepository{
 
 //    实例化attachment对象
     public function newAttachment($request,$random_name,$saved_at){
-        $file=$request->file('attachment');
         $attachment=new Attachment();
-        $attachment->original_name=$file->getClientOriginalName();
+        $attachment->original_name=$request->file('attachment')->getClientOriginalName();
         $attachment->random_name=$random_name;
         $attachment->status='1';
         $attachment->note=$request->note;
@@ -27,15 +26,17 @@ class AttachmentRepository{
         return $attachment;
     }
 
-//      保存附件：先将附件保存到七牛，再取得附件保存路径，最后保存到数据库。
+//      保存附件
     public function storeAttachment($request){
+//        将附件保存到七牛
         $file=$request->file('attachment');
         $random_name=str_random(5).'.'.$file->getClientOriginalExtension();
         $disk=\Storage::disk('qiniu');
         $res=$disk->put($random_name,file_get_contents($file->getRealPath()));
+//        若保存成功，则取得保存地址，并存到数据表中。
         if ($res){
             $saved_at=$disk->getDriver()->downloadUrl($random_name);
-//            如果选择的是全部版本
+//            判断该附件是否适用全部版本
             if ($request->is_general) {
                 Book::find($request->book_id)->attachments()->save($this->newAttachment($request, $random_name, $saved_at));
             }else{

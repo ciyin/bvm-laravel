@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Http\Requests\StoreVersion;
 use App\repositories\CoverRepository;
+use App\repositories\LogRepository;
 use App\repositories\VersionRepository;
 use Illuminate\Http\Request;
 use App\Version;
@@ -14,10 +15,12 @@ class VersionController extends Controller
 {
     protected $version;
     protected $cover;
-    public function __construct(VersionRepository $version,CoverRepository $cover)
+    protected $log;
+    public function __construct(VersionRepository $version,CoverRepository $cover,LogRepository $log)
     {
         $this->version=$version;
         $this->cover=$cover;
+        $this->log=$log;
     }
 
     /**
@@ -51,10 +54,9 @@ class VersionController extends Controller
 
 //      新增封面记录
         if ($request->cover){
-            $version=Version::find($version->id);
-            $version->cover()->save($this->cover->storeCover($request));
+            Version::find($version->id)->cover()->save($this->cover->storeCover($request));
         }
-
+        $this->log->storeLog('新增版本：'.$request->version);
         return redirect('/book');
     }
 

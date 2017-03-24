@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRole;
+use App\repositories\LogRepository;
 use App\repositories\RoleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,9 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class RoleController extends Controller
 {
     protected $role;
-    public function __construct(RoleRepository $role)
+    protected $log;
+    public function __construct(RoleRepository $role,LogRepository $log)
     {
         $this->role=$role;
+        $this->log=$log;
     }
 
     /**
@@ -40,6 +43,7 @@ class RoleController extends Controller
     public function store(StoreRole $request)
     {
         $this->role->storeRole($request);
+        $this->log->storeLog('新增角色：'.$request->role);
         return redirect('/role');
     }
 
@@ -71,6 +75,7 @@ class RoleController extends Controller
     public function update(StoreRole $request, $id)
     {
         $this->role->updateRole($request,$id);
+        $this->log->storeLog('编辑角色：'.$request->role);
         return redirect('/role');
     }
 

@@ -30,9 +30,11 @@
                                 <a href="{{$value->saved_at}}">{{$value->original_name}}</a>
                                 @if($value->status==1)
                                     <span>（使用中）</span>
-                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
-                                        停用
-                                    </button>
+                                    @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
+                                            停用
+                                        </button>
+                                    @endif
                                 @else
                                     <span>（停用）</span>
                                 @endif
@@ -48,9 +50,11 @@
                                 <a href="{{$attachment->saved_at}}">{{$attachment->original_name}}</a>
                                 @if($attachment->status==1)
                                     <span>（使用中）</span>
-                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
-                                        停用
-                                    </button>
+                                    @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
+                                            停用
+                                        </button>
+                                    @endif
                                 @else
                                     <span>（停用）</span>
                                 @endif

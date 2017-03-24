@@ -16,7 +16,7 @@ use Symfony\Component\Console\Helper\Table;
 class BookRepository{
 //教材列表
     public function bookList(){
-        $list=Book::with('examType','bookType','user','subject')->Paginate(10);
+        $list=Book::with('examType','bookType','user','subject')->Paginate(20);
         return $list;
     }
 //新增教材
@@ -39,6 +39,7 @@ class BookRepository{
         $book=Book::find($id);
         $book->book=$request->book;
         $book->exam_type_id=$request->exam_type;
+        $book->subject_id=$request->subject_id;
         $book->book_type_id=$request->book_type;
         $book->using_type=$request->using_type;
         $book->contents=$request->contents;

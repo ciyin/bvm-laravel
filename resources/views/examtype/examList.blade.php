@@ -25,7 +25,7 @@
                     编辑
                 </button>
                 @include('examtype/editExam')
-                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addSubject">
+                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addSubject{{$exam->id}}">
                     科目
                 </button>
                 @include('subject/addSubject')

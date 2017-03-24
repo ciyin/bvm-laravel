@@ -8,9 +8,16 @@
 
 namespace App\repositories;
 
+use App\Subject;
+
 class SubjectRepository{
 
-    public function storeSubject(){
-
+    public function storeSubject($request,$exam){
+        $subjects=explode('/',$request->subject);
+        for ($i=0;$i<count($subjects);$i++){
+            $subject=new Subject();
+            $subject->subject=$subjects[$i];
+            $exam->subjects()->save($subject);
+        }
     }
 }

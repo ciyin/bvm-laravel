@@ -106,6 +106,17 @@
             xhr.open('get','/subject/'+id,true);
             xhr.send();
         }
+        {{--编辑教材的表单中，点击考试类型时，显示其相应的科目--}}
+        function editBook(id) {
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function () {
+                if (xhr.readyState==4 && xhr.status==200){
+                    document.getElementById('subjects').innerHTML=xhr.responseText;
+                }
+            };
+            xhr.open('get','/subject/'+id,true);
+            xhr.send();
+        }
 
     </script>
 </body>

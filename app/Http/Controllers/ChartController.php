@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ExamType;
-use App\repositories\LogRepository;
-use App\repositories\SubjectRepository;
-use App\Subject;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class ChartController extends Controller
 {
-    protected $log;
-    public function __construct(LogRepository $log)
-    {
-        $this->log=$log;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +13,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('chart/chartPage');
     }
 
     /**
@@ -37,23 +27,25 @@ class SubjectController extends Controller
     }
 
     /**
-     * 新增科目
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,SubjectRepository $subject)
+    public function store(Request $request)
     {
-        $exam=ExamType::find($request->exam_type_id);
-        $subject->storeSubject($request,$exam);
-        $this->log->storeLog('新增科目：'.$exam->exam_type.'-'.$request->subject);
-        return redirect('/examtype');
+        //
     }
 
     /**
-     * 新增教材表单中：点击考试类型，显示其对应的科目
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $subjects=ExamType::find($id)->subjects()->get();
-        return view('subject/subjectRadio',['subjects'=>$subjects]);
+        //
     }
 
     /**

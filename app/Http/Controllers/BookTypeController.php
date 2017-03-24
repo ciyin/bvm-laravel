@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreType;
 use App\repositories\BookTypeRepository;
-use Illuminate\Http\Request;
+use App\repositories\LogRepository;
 use Illuminate\Support\Facades\Auth;
 
 class BookTypeController extends Controller
 {
     protected $type;
-    public function __construct(BookTypeRepository $type)
+    protected $log;
+    public function __construct(BookTypeRepository $type,LogRepository $log)
     {
         $this->type=$type;
+        $this->log=$log;
     }
 
     /**
@@ -40,6 +42,7 @@ class BookTypeController extends Controller
     public function store(StoreType $request)
     {
         Auth::user()->bookTypes()->save($this->type->storeType($request));
+        $this->log->storeLog('新增教材分类：'.$request->book_type);
         return redirect('/booktype');
     }
 
@@ -71,6 +74,7 @@ class BookTypeController extends Controller
     public function update(StoreType $request, $id)
     {
         $this->type->updateType($request,$id);
+        $this->log->storeLog('编辑教材分类：'.$request->book_type);
         return redirect('/booktype');
     }
 

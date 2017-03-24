@@ -5,10 +5,12 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-xs-12" style="margin-bottom: 5px">
                 <div style="float: right">
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAttach">
-                       附件
-                    </button>
-                    @include('attachment/addAttach')
+                    @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAttach">
+                           附件
+                        </button>
+                        @include('attachment/addAttach')
+                    @endif
                 </div>
             </div>
 

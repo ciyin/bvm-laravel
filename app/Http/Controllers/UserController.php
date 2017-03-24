@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUser;
+use App\Log;
+use App\repositories\LogRepository;
 use App\repositories\RoleRepository;
 use App\repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     protected $user;
-    public function __construct(UserRepository $user)
+    protected $log;
+    public function __construct(UserRepository $user,LogRepository $log)
     {
         $this->user=$user;
+        $this->log=$log;
     }
 
     /**
@@ -41,6 +46,7 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         $this->user->storeUser($request);
+        $this->log->storeLog('新增用户：'.$request->name);
         return redirect('/user');
     }
 
@@ -72,6 +78,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->user->updateUser($request,$id);
+        $this->log->storeLog('修改用户信息：'.$request->name);
         return redirect('/user');
     }
 

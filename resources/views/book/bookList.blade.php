@@ -26,14 +26,16 @@
                 <a href="{{route('book.show',$book->id)}}" target="_blank">
                     <button type="button" class="btn btn-default btn-xs">详情</button>
                 </a>
-                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editBook{{$book->id}}">
-                    编辑
-                </button>
-                @include('book/editBook')
-                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addVersion{{$book->id}}">
-                    改版
-                </button>
-                @include('version.addVersion')
+                @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editBook{{$book->id}}">
+                        编辑
+                    </button>
+                    @include('book/editBook')
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addVersion{{$book->id}}">
+                        改版
+                    </button>
+                    @include('version.addVersion')
+                @endif
             </td>
         </tr>
     @endforeach
@@ -45,7 +47,7 @@
             {{$books->links()}}
         </div>
         <div style="float: left;height: 95px;line-height: 95px;margin-left: 5px">
-            <small>每页15条，共100条</small>
+            <small>每页20条，共{{$rows}}条</small>
         </div>
     </div>
 </div>

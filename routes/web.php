@@ -34,3 +34,7 @@ Route::resource('version','VersionController');
 Route::resource('attachment','AttachmentController');
 
 Route::resource('subject','SubjectController');
+
+Route::resource('log','LogController');
+
+Route::resource('chart','ChartController');

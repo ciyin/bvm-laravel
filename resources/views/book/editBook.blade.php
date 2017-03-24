@@ -16,15 +16,7 @@
                             {{method_field('PUT')}}
                         </fieldset>
                     </div>
-                    <div>
-                        <label>考试类型：</label>
-                        @foreach($exams as $exam)
-                            <label class="radio-inline">
-                                <input type="radio" name="exam_type" value="{{$exam->id}}">{{$exam->exam_type}}
-                                {{method_field('PUT')}}
-                            </label>
-                        @endforeach
-                    </div>
+
                     <div>
                         <label>教材分类：</label>
                         @foreach($types as $type)
@@ -43,6 +35,18 @@
                             <input type="radio" name="using_type" value="教师用书">教师用书
                         </label>
                     </div>
+                    <div>
+                        <label>考试类型：</label>
+                        @foreach($exams as $exam)
+                            <label class="radio-inline">
+                                <input type="radio" name="exam_type" value="{{$exam->id}}" onclick="editBook(this.value)">{{$exam->exam_type}}
+                            </label>
+                        @endforeach
+                    </div>
+
+                    {{--考试科目预留位置：点击考试类型时，显示其对应的考试科目--}}
+                    <div id="subjects"></div>
+
                     <div>
                         <label>内容简介：</label>
                         <textarea class="form-control" rows="3" name="contents">{{$book->contents}}</textarea>

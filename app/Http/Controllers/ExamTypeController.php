@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreExam;
 use App\repositories\ExamTypeRepository;
+use App\repositories\LogRepository;
+use App\repositories\SubjectRepository;
 use App\Subject;
 use Illuminate\Support\Facades\Auth;
 
 class ExamTypeController extends Controller
 {
     protected $exam;
-    public function __construct(ExamTypeRepository $exam)
+    protected $log;
+    public function __construct(ExamTypeRepository $exam,LogRepository $log)
     {
         $this->exam=$exam;
+        $this->log=$log;
     }
 
     /**
@@ -39,15 +43,12 @@ class ExamTypeController extends Controller
     /**
      * 新增考试类型。
      */
-    public function store(StoreExam $request)
+    public function store(StoreExam $request,SubjectRepository $subject)
     {
         $exam=Auth::user()->examTypes()->save($this->exam->storeExam($request));
-        $subjects=explode('/',$request->subject);
-        for ($i=0;$i<count($subjects);$i++){
-            $subject=new Subject();
-            $subject->subject=$subjects[$i];
-            $exam->subjects()->save($subject);
-        }
+        $subject->storeSubject($request,$exam);
+        $this->log->storeLog('新增考试类型：'.$request->exam_type);
+        $this->log->storeLog('新增科目：'.$request->subject);
         return redirect('/examtype');
     }
 
@@ -80,6 +81,7 @@ class ExamTypeController extends Controller
     public function update(StoreExam $request, $id)
     {
         $this->exam->updateExam($request,$id);
+        $this->log->storeLog('编辑考试类型：'.$request->exam_type);
         return redirect('/examtype');
     }
 

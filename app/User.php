@@ -77,4 +77,9 @@ class User extends Authenticatable
     public function attachments(){
         return $this->hasMany('App\Attachment');
     }
+
+//  关联操作记录
+    public function logs(){
+        return $this->hasMany('App\Log');
+    }
 }
