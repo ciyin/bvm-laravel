@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\BookType;
+use App\ExamType;
 use Illuminate\Http\Request;
 
 class ChartController extends Controller
@@ -13,7 +15,10 @@ class ChartController extends Controller
      */
     public function index()
     {
-        return view('chart/chartPage');
+        $exams=ExamType::with('books')->get();
+        $types=BookType::with('books')->get();
+        return view('chart/chartPage',['exams'=>$exams,'types'=>$types]);
+
     }
 
     /**

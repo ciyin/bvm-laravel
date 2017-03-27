@@ -17,11 +17,7 @@
             <td>{{$book->subject['subject']}}</td>
             <td>{{$book->bookType->book_type}}</td>
             <td>{{$book->using_type}}</td>
-            @if($book->status==1)
-                <td>使用中</td>
-            @else
-                <td>停用</td>
-            @endif
+            <td>{{$book->status}}</td>
             <td>
                 <a href="{{route('book.show',$book->id)}}" target="_blank">
                     <button type="button" class="btn btn-default btn-xs">详情</button>

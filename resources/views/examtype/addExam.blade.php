@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="subject">科目：</label>
                         <input type="text" class="form-control" id="subject" name="subject">
-                        <span><small>提示：科目之间请用“/”隔开。例：阅读/听力/口语/写作</small></span>
+                        <span><small>提示：新增多个科目时，科目之间请用“/”隔开。例：阅读/听力/口语/写作</small></span>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -13,13 +13,7 @@
         <td width="10%" class="td">使用分类：</td>
         <td width="20%" class="td">{{$book->using_type}}</td>
         <td width="15%" class="td">使用状态：</td>
-        <td width="25%" class="td">
-            @if($book->status==1)
-                使用中
-            @else
-                停用
-            @endif
-        </td>
+        <td width="25%" class="td">{{$book->status}}</td>
     </tr>
     <tr>
         <td width="10%" class="td">创建人：</td>

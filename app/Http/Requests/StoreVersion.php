@@ -24,9 +24,20 @@ class StoreVersion extends FormRequest
     public function rules()
     {
         return [
-            'version'=>'required|string',
-            'update_reason'=>'required|string|max:255',
+            'version'=>'bail|required|string',
+            'update_reason'=>'bail|required|string',
             'cover'=>'image',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'version.required' => '版本号不能为空',
+            'version.string' => '版本号必须为字符串',
+            'update_reason.required' => '改版说明不能为空',
+            'update_reason.string' => '改版说明必须为字符串',
+            'cover.image' => '文件必须为图片格式，如jpeg,png,bmp,gif,svg等'
         ];
     }
 }

@@ -13,12 +13,19 @@
                 @endif
             </div>
             <div class="col-lg-10 col-md-10 col-xs-10">
-                <p>TOEFL：共30本</p>
-                <p>学生用书：10本，其中停用7本</p>
-                <p>教师用书：20本，其中停用7本</p>
-                <p>课本：10本，其中停用7本</p>
-                <p>模考卷：20本，其中停用7本</p>
-                <p>阅读：共1本</p>
+                @foreach($exams as $exam)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{$exam->exam_type}}</strong>
+                            <span><small>（{{count($exam->books)}}）</small></span>
+                        </div>
+                        <div class="panel-body">
+                            @foreach($types as $type)
+                                <p>{{$type->book_type}}：共{{count($type->books)}}本</p>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

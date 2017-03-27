@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->integer('subject_id');
             $table->string('using_type');
             $table->integer('user_id');
-            $table->integer('status');
+            $table->string('status');
             $table->string('contents');
             $table->string('using_instruction');
             $table->timestamps();

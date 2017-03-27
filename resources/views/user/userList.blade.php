@@ -17,11 +17,7 @@
             <td>{{$user->email}}</td>
             <td>{{$user->role->role}}</td>
             <td>{{$user->city}}</td>
-            @if($user->status==1)
-                <td>使用中</td>
-            @else
-                <td>停用</td>
-            @endif
+            <td>{{$user->status}}</td>
             <td>{{$user->user->name}}</td>
             <td>{{$user->created_at}}</td>
             <td>

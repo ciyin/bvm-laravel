@@ -27,4 +27,13 @@ class StoreType extends FormRequest
             'book_type'=>'required|string|unique:book_types,book_type'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'book_type.required'=>'教材分类不能为空',
+            'book_type.string'=>'教材分类必须为字符串',
+            'book_type.unique'=>'该分类名称已存在',
+        ];
+    }
 }

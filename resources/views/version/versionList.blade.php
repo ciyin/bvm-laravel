@@ -28,15 +28,13 @@
                         @foreach($attachments as $value)
                             <li>
                                 <a href="{{$value->saved_at}}">{{$value->original_name}}</a>
-                                @if($value->status==1)
-                                    <span>（使用中）</span>
+                                <span>{{$value->status}}</span>
+                                @if($value->status=='使用中')
                                     @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
                                         <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
                                             停用
                                         </button>
                                     @endif
-                                @else
-                                    <span>（停用）</span>
                                 @endif
                             </li>
                         @endforeach
@@ -48,15 +46,13 @@
                         @foreach($version->attachments as $attachment)
                             <li>
                                 <a href="{{$attachment->saved_at}}">{{$attachment->original_name}}</a>
-                                @if($attachment->status==1)
-                                    <span>（使用中）</span>
+                                <span>{{$attachment->status}}</span>
+                                @if($attachment->status=='使用中')
                                     @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
                                         <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
                                             停用
                                         </button>
                                     @endif
-                                @else
-                                    <span>（停用）</span>
                                 @endif
                             </li>
                         @endforeach

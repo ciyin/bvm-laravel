@@ -55,7 +55,7 @@ class ExamTypesTableSeeder extends Seeder
                 'updated_at'=>date('Y-m-d H:i:s'),
             ),
             7 => array(
-                'exam_type'=>'SAT 2',
+                'exam_type'=>'SAT II',
                 'user_id'=>'1',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s'),

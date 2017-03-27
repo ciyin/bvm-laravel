@@ -27,4 +27,13 @@ class StoreRole extends FormRequest
             'role'=>'required|string|unique:roles,role',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'role.required'=>'角色不能为空',
+            'role.string'=>'角色必须为字符串',
+            'role.unique'=>'该角色名称已存在',
+        ];
+    }
 }

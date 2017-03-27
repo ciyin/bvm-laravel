@@ -19,10 +19,10 @@ class CreateAttachmentsTable extends Migration
             $table->string('attachmentable_type');
             $table->string('original_name');
             $table->string('random_name');
-            $table->integer('status');
+            $table->string('status');
             $table->string('note');
             $table->string('saved_at');
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

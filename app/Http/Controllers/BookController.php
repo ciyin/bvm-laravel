@@ -80,6 +80,7 @@ class BookController extends Controller
         if ($request->cover){
             Version::find($version->id)->cover()->save($this->cover->storeCover($request));
         }
+//        保存操作记录
         $this->log->storeLog('新增教材：'.$request->book);
 
         return redirect('/book');

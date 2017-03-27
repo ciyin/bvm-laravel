@@ -69,11 +69,11 @@
                     <div>
                         <label>状态：</label>
                         <label class="radio-inline">
-                            <input type="radio" name="status" value="1" checked> 启用
+                            <input type="radio" name="status" value="使用中" checked> 启用
                             {{method_field('PUT')}}
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="status" value="0"> 停用
+                            <input type="radio" name="status" value="停用"> 停用
                             {{method_field('PUT')}}
                         </label>
                     </div>

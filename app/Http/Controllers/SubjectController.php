@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExamType;
+use App\Http\Requests\StoreSubject;
 use App\repositories\LogRepository;
 use App\repositories\SubjectRepository;
 use App\Subject;
@@ -39,7 +40,7 @@ class SubjectController extends Controller
     /**
      * 新增科目
      */
-    public function store(Request $request,SubjectRepository $subject)
+    public function store(StoreSubject $request,SubjectRepository $subject)
     {
         $exam=ExamType::find($request->exam_type_id);
         $subject->storeSubject($request,$exam);

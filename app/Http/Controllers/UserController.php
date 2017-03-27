@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditUser;
 use App\Http\Requests\StoreUser;
 use App\Log;
 use App\repositories\LogRepository;
@@ -75,7 +76,7 @@ class UserController extends Controller
     /**
      * 更新用户信息。
      */
-    public function update(Request $request, $id)
+    public function update(EditUser $request, $id)
     {
         $this->user->updateUser($request,$id);
         $this->log->storeLog('修改用户信息：'.$request->name);

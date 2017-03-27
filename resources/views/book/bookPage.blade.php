@@ -14,6 +14,18 @@
             </div>
             <div class="col-lg-10 col-md-10 col-xs-10">
                 <div class="row">
+                    @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+
+                        </div>
+                    @endif
+                </div>
+                <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-6">
                         @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addBook">

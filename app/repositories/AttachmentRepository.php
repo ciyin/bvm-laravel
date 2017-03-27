@@ -19,7 +19,7 @@ class AttachmentRepository{
         $attachment=new Attachment();
         $attachment->original_name=$request->file('attachment')->getClientOriginalName();
         $attachment->random_name=$random_name;
-        $attachment->status='1';
+        $attachment->status='使用中';
         $attachment->note=$request->note;
         $attachment->saved_at=$saved_at;
         $attachment->user_id=Auth::id();

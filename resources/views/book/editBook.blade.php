@@ -39,13 +39,13 @@
                         <label>考试类型：</label>
                         @foreach($exams as $exam)
                             <label class="radio-inline">
-                                <input type="radio" name="exam_type" value="{{$exam->id}}" onclick="editBook(this.value)">{{$exam->exam_type}}
+                                <input type="radio" name="exam_type" value="{{$exam->id}}" onclick="editSubject(this.value)">{{$exam->exam_type}}
                             </label>
                         @endforeach
                     </div>
 
                     {{--考试科目预留位置：点击考试类型时，显示其对应的考试科目--}}
-                    <div id="subjects"></div>
+                    <div id="edit_subjects"></div>
 
                     <div>
                         <label>内容简介：</label>
@@ -60,11 +60,11 @@
                     <div>
                         <label>使用状态：</label>
                         <label class="radio-inline">
-                            <input type="radio" name="status" value="1" checked> 启用
+                            <input type="radio" name="status" value="使用中" checked> 启用
                             {{method_field('PUT')}}
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="status" value="0"> 停用
+                            <input type="radio" name="status" value="停用"> 停用
                             {{method_field('PUT')}}
                         </label>
                     </div>
