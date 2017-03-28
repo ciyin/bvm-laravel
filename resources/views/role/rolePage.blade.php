@@ -21,7 +21,14 @@
                                     <li>{{$error}}</li>
                                 @endforeach
                             </ul>
+                        </div>
+                    @endif
 
+                    @if(count($roles)==0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                <li>没有找到相关记录！</li>
+                            </ul>
                         </div>
                     @endif
                 </div>
@@ -32,10 +39,16 @@
                         </button>
                         @include('role/addRole')
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-xs-6">
+                        <div style="float: right;margin-left: 5px">
+                            <form action="{{route('role.index')}}" method="get">
+                                <button type="submit" class="btn btn-default btn-sm">重置</button>
+                            </form>
+                        </div>
                         <div style="float: right">
-                            <form>
-                                <input type="text">
+                            <form action="{{route('role.create')}}" method="get">
+                                <input type="text" name="search_role" placeholder="请输入角色名称搜索">
                                 <button type="submit" class="btn btn-default btn-sm">搜索</button>
                             </form>
                         </div>

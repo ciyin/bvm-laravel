@@ -25,12 +25,17 @@ class RolesTableSeeder extends Seeder
                 'updated_at'=>date('Y-m-d H:i:s'),
             ),
             2 => array(
+                'role'=>'教师',
+                'user_id'=> '1',
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s'),
+            ),
+            3 => array(
                 'role'=>'督导',
                 'user_id'=> '1',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s'),
-    )
-            )
-        );
+            ),
+        ));
     }
 }

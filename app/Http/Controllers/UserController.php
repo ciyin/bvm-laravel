@@ -36,9 +36,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(RoleRepository $role)
     {
-        //
+        return view('user/userPage',['users'=>$this->user->searchUser($_GET['search_user']),'roles'=>$role->roleList()]);
     }
 
     /**

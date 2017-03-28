@@ -24,4 +24,10 @@ class AttachmentController extends Controller
         $this->log->storeLog('新增附件：'.$request->file('attachment')->getClientOriginalName());
         return redirect()->route('book.show',$request->book_id);
     }
+
+    public function update(Request $request,AttachmentRepository $attachment){
+        $attachment->updateAttachment($request);
+        $this->log->storeLog($request->status.':'.$request->attach);
+        return redirect()->route('book.show',$request->book_id);
+    }
 }

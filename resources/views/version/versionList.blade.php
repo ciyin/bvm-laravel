@@ -28,12 +28,13 @@
                         @foreach($attachments as $value)
                             <li>
                                 <a href="{{$value->saved_at}}">{{$value->original_name}}</a>
-                                <span>{{$value->status}}</span>
+                                <span><small>({{$value->status}})</small></span>
                                 @if($value->status=='使用中')
                                     @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
-                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment{{$value->id}}">
                                             停用
                                         </button>
+                                        @include('attachment/editAttach')
                                     @endif
                                 @endif
                             </li>
@@ -46,12 +47,13 @@
                         @foreach($version->attachments as $attachment)
                             <li>
                                 <a href="{{$attachment->saved_at}}">{{$attachment->original_name}}</a>
-                                <span>{{$attachment->status}}</span>
+                                <span><small>({{$attachment->status}})</small></span>
                                 @if($attachment->status=='使用中')
                                     @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
-                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachment">
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#editAttachments{{$attachment->id}}">
                                             停用
                                         </button>
+                                        @include('attachment/editAttachment')
                                     @endif
                                 @endif
                             </li>
@@ -64,4 +66,7 @@
             </td>
         </tr>
     </table>
+
 @endforeach
+
+

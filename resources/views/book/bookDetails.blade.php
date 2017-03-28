@@ -19,7 +19,7 @@
                 <div style="float: right">
                     @if(Auth::user()->role_id==1 || Auth::user()->role_id==2)
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAttach">
-                           附件
+                           添加附件
                         </button>
                         @include('attachment/addAttach')
                     @endif

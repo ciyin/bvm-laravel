@@ -32,4 +32,10 @@ class BookTypeRepository{
         $type->book_type=$request->book_type;
         $type->save();
     }
+
+//    搜索教材分类。
+    public function searchType($type){
+        $list=BookType::where('book_type','like','%'.$type.'%')->get();
+        return $list;
+    }
 }

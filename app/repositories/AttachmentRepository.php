@@ -51,6 +51,13 @@ class AttachmentRepository{
         }
     }
 
+//    停用附件
+    public function updateAttachment($request){
+        $attachment=Attachment::find($request->attachment);
+        $attachment->status=$request->status;
+        $attachment->save();
+        return $attachment;
+    }
 
 
 }

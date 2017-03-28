@@ -47,5 +47,11 @@ class BookRepository{
         $book->status=$request->status;
         $book->save();
     }
-
+//    搜索教材
+    public function searchBook($book){
+        $list= $list=Book::with('examType','bookType','user','subject')
+            ->where('books.book','like','%'.$book.'%')
+            ->Paginate(20);
+        return $list;
+    }
 }

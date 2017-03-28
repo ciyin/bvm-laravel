@@ -29,4 +29,9 @@ class ExamTypeRepository{
         $exam->exam_type=$request->exam_type;
         $exam->save();
     }
+//    搜索考试类型。
+    public function searchExam($exam){
+        $list=ExamType::where('exam_type','like','%'.$exam.'%')->get();
+        return $list;
+    }
 }

@@ -21,7 +21,14 @@
                                     <li>{{$error}}</li>
                                 @endforeach
                             </ul>
+                        </div>
+                    @endif
 
+                    @if(count($users)==0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                <li>没有找到相关记录！</li>
+                            </ul>
                         </div>
                     @endif
                 </div>
@@ -33,9 +40,14 @@
                         @include('user/addUser')
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-6">
+                        <div style="float: right;margin-left: 5px">
+                            <form action="{{route('user.index')}}" method="get">
+                                <button type="submit" class="btn btn-default btn-sm">重置</button>
+                            </form>
+                        </div>
                         <div style="float: right">
-                            <form>
-                                <input type="text">
+                            <form method="get" action="{{route('user.create')}}">
+                                <input type="text" name="search_user" placeholder="请输入姓名搜索">
                                 <button type="submit" class="btn btn-default btn-sm">搜索</button>
                             </form>
                         </div>

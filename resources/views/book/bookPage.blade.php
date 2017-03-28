@@ -24,6 +24,14 @@
 
                         </div>
                     @endif
+
+                    @if(count($books)==0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                <li>没有找到相关记录！</li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-6">
@@ -35,9 +43,14 @@
                         @endif
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-6">
+                        <div style="float: right;margin-left: 5px">
+                            <form action="{{route('book.index')}}" method="get">
+                                <button type="submit" class="btn btn-default btn-sm">重置</button>
+                            </form>
+                        </div>
                         <div style="float: right">
-                            <form>
-                                <input type="text">
+                            <form method="get" action="{{route('book.create')}}">
+                                <input type="text" name="search_book" placeholder="请输入教材名称搜索">
                                 <button type="submit" class="btn btn-default btn-sm">搜索</button>
                             </form>
                         </div>

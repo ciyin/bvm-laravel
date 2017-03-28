@@ -37,7 +37,7 @@ class ExamTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('examtype/examPage',['exams'=>$this->exam->searchExam($_GET['search_examtype'])]);
     }
 
     /**

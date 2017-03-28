@@ -60,9 +60,14 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ExamTypeRepository $exam,BookTypeRepository $type)
     {
-        //
+        return view('book/bookPage', [
+            'books'=>$this->book->searchBook($_GET['search_book']),
+            'exams'=>$exam->examList(),
+            'types'=>$type->typeList(),
+            'rows'=>count($this->book->searchBook($_GET['search_book']))
+        ]);
     }
 
     /**

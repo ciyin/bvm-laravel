@@ -23,8 +23,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $list=$this->role->roleList();
-        return view('role/rolePage',['roles'=>$list]);
+        return view('role/rolePage',['roles'=>$this->role->roleList()]);
     }
 
     /**
@@ -34,7 +33,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('role/rolePage',['roles'=>$this->role->searchRole($_GET['search_role'])]);
     }
 
     /**
@@ -55,7 +54,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -88,5 +87,9 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search($request){
+
     }
 }

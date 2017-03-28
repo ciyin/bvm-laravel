@@ -33,5 +33,10 @@ class RoleRepository{
         $role->role=$request->role;
         $role->save();
     }
+//    查找角色信息。
+    public function searchRole($role){
+        $role=Role::where('role','like','%'.$role.'%')->get();
+        return $role;
+    }
 
 }

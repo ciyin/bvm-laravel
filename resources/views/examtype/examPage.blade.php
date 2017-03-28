@@ -22,7 +22,14 @@
                                         <li>{{$error}}</li>
                                     @endforeach
                                 </ul>
+                            </div>
+                        @endif
 
+                        @if(count($exams)==0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    <li>没有找到相关记录！</li>
+                                </ul>
                             </div>
                         @endif
                     </div>
@@ -33,9 +40,14 @@
                         @include('examtype/addExam')
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-6">
+                        <div style="float: right;margin-left: 5px">
+                            <form action="{{route('examtype.index')}}" method="get">
+                                <button type="submit" class="btn btn-default btn-sm">重置</button>
+                            </form>
+                        </div>
                         <div style="float: right">
-                            <form>
-                                <input type="text">
+                            <form method="get" action="{{route('examtype.create')}}">
+                                <input type="text" name="search_examtype" placeholder="请输入考试类型搜索">
                                 <button type="submit" class="btn btn-default btn-sm">搜索</button>
                             </form>
                         </div>

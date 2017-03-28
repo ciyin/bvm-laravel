@@ -33,7 +33,7 @@ class BookTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('booktype/typePage',['types'=>$this->type->searchType($_GET['search_booktype'])]);
     }
 
     /**

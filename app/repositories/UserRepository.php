@@ -28,6 +28,7 @@ class UserRepository{
         $user->city=$request->city;
         $user->status=$request->status;
         $user->user_id=Auth::id();
+        $user->remember_token=$request->_token;
         $user->save();
     }
 
@@ -41,5 +42,10 @@ class UserRepository{
         $user->status=$request->status;
         $user->user_id=Auth::id();
         $user->save();
+    }
+//    搜索用户。
+    public function searchUser($user){
+        $user=User::where('name','like','%'.$user.'%')->get();
+        return $user;
     }
 }

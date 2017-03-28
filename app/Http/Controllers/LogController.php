@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Log;
+use App\repositories\LogRepository;
 use Illuminate\Http\Request;
 
 class LogController extends Controller
@@ -12,11 +13,9 @@ class LogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(LogRepository $log)
     {
-        $list=Log::with('user')->Paginate(20);
-        $rows=count($list);
-        return view('log/logPage',['logs'=>$list,'rows'=>$rows]);
+        return view('log/logPage',['logs'=>$log->logList(),'rows'=>count($log->logList())]);
     }
 
     /**
@@ -24,9 +23,11 @@ class LogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(LogRepository $log)
     {
-        //
+        $list=$log->searchLog($_GET['search_log']);
+        $rows=count($list);
+        return view('log/logPage',['logs'=>$list,'rows'=>$rows]);
     }
 
     /**
